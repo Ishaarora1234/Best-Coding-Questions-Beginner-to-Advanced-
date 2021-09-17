@@ -41,6 +41,7 @@ sort(j.begin(), j.end(), &comparat);
 			g[k]=j[i].jn;
 			profit+=j[i].p;
 			i++;
+			exit;
 		}	
 		
 		}
