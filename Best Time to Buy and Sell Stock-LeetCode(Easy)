@@ -1,1 +1,36 @@
-//best code coming out of my mind within a few minutes...
+class Solution {
+public:
+    int max(int a,int b){
+        if(a>b)
+            return a;
+        else
+            return b;
+    }
+    
+    int mp(int maxprofit,int n,vector<int>& prices,int minindex,int min){
+        if(n==0)
+            return maxprofit;
+        if(minindex<n)
+        {
+            if(prices[n]-min>maxprofit)
+            maxprofit=prices[n]-min;
+            return mp(maxprofit,n-1,prices,minindex,min);
+        }
+        else{
+        const auto begin=prices.begin();
+        const auto end=begin+n;
+        minindex=std::min_element(begin,end)-prices.begin();
+        min=prices[minindex];
+        if(minindex==n)
+            return 0;
+        else if(prices[n]-min>maxprofit)
+            maxprofit=prices[n]-min;
+                return mp(maxprofit,n-1,prices,minindex,min);
+        }
+        return maxprofit;
+    }
+    int maxProfit(vector<int>& prices) {
+        int n=prices.size();
+        return mp(0,n-1,prices,n,prices[n-1]);
+    }
+};
