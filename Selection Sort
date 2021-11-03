@@ -1,0 +1,33 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int findmin(int arr[10],int i,int n){
+    int minimum=INT_MAX;
+    int index=INT_MAX;
+    for(int j=i;j<n;j++){
+        if(arr[j]<minimum){
+            minimum=arr[j];
+            index=j;}
+    }
+    return index;
+}
+void swap(int *a,int *b){
+    int temp=*a;
+    *a=*b;
+    *b=temp;
+    return;
+}
+void selectionsort(int *arr,int n){
+    for(int i=0;i<n;i++){
+        int temp=findmin(arr,i,n);
+        swap(arr[temp],arr[i]);
+    }
+}
+int main(){
+    int arr[]={4,3,1,7,9,2,10,23,5};
+    selectionsort(arr,9);
+    for(int i=0;i<9;i++)
+    cout<<arr[i]<<" ";
+    return 0;
+}
