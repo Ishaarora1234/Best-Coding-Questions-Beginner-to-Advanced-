@@ -1,0 +1,186 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        int flag=0;
+        for(int i=0;i<9;i++)
+        {
+            unordered_map<char,int> map;
+            for(int j=0;j<9;j++){
+                if(board[i][j]=='.'){
+                continue;}
+                if(map[board[i][j]]>0){
+                    flag=1;
+                    exit;
+                }
+                else
+                map[board[i][j]]=1;
+            }
+        }
+        if(flag==1)
+            return false;
+        for(int i=0;i<9;i++)
+        {
+            unordered_map<char,int> map;
+            for(int j=0;j<9;j++){
+                if(board[j][i]=='.'){
+                    continue;
+                }
+                if(map[board[j][i]]>0){
+                    flag=1;
+                    exit;
+                }
+                else
+                map[board[j][i]]=1;
+            }
+        }
+        if(flag==1)
+            return false;
+         unordered_map<char,int> map;
+            for(int i=0;i<3;i++){
+                for(int j=0;j<3;j++){
+                    if(board[j][i]=='.'){
+                    continue;
+                }
+                if(map[board[j][i]]>0){
+                    flag=1;
+                    exit;
+                }
+                else
+                map[board[j][i]]=1;
+                }
+            }
+        if(flag==1)
+            return false;
+        map.clear();
+            for(int i=0;i<3;i++){
+                for(int j=3;j<6;j++){
+                    if(board[j][i]=='.'){
+                    continue;
+                }
+                if(map[board[j][i]]>0){
+                    flag=1;
+                    exit;
+                }
+                else
+                map[board[j][i]]=1;
+                }
+            }
+        if(flag==1)
+            return false;
+        map.clear();
+            for(int i=0;i<3;i++){
+                for(int j=6;j<9;j++){
+                    if(board[j][i]=='.'){
+                    continue;
+                }
+                if(map[board[j][i]]>0){
+                    flag=1;
+                    exit;
+                }
+                else
+                map[board[j][i]]=1;
+                }
+            }
+        if(flag==1)
+            return false;
+        map.clear();
+            for(int i=3;i<6;i++){
+                for(int j=0;j<3;j++){
+                    if(board[j][i]=='.'){
+                    continue;
+                }
+                if(map[board[j][i]]>0){
+                    flag=1;
+                    exit;
+                }
+                else
+                map[board[j][i]]=1;
+                }
+            }
+        if(flag==1)
+            return false;
+        map.clear();
+            for(int i=3;i<6;i++){
+                for(int j=3;j<6;j++){
+                    if(board[j][i]=='.'){
+                    continue;
+                }
+                if(map[board[j][i]]>0){
+                    flag=1;
+                    exit;
+                }
+                else
+                map[board[j][i]]=1;
+                }
+            }
+        if(flag==1)
+            return false;
+        map.clear();
+            for(int i=3;i<6;i++){
+                for(int j=6;j<9;j++){
+                    if(board[j][i]=='.'){
+                    continue;
+                }
+                if(map[board[j][i]]>0){
+                    flag=1;
+                    exit;
+                }
+                else
+                map[board[j][i]]=1;
+                }
+            }
+        if(flag==1)
+            return false;
+        map.clear();
+            for(int i=6;i<9;i++){
+                for(int j=0;j<3;j++){
+                    if(board[j][i]=='.'){
+                    continue;
+                }
+                if(map[board[j][i]]>0){
+                    flag=1;
+                    exit;
+                }
+                else
+                map[board[j][i]]=1;
+                }
+            }
+        if(flag==1)
+            return false;
+        map.clear();
+            for(int i=6;i<9;i++){
+                for(int j=3;j<6;j++){
+                    if(board[j][i]=='.'){
+                    continue;
+                }
+                if(map[board[j][i]]>0){
+                    flag=1;
+                    exit;
+                }
+                else
+                map[board[j][i]]=1;
+                }
+            }
+        if(flag==1)
+            return false;
+        map.clear();
+            for(int i=6;i<9;i++){
+                for(int j=6;j<9;j++){
+                    if(board[j][i]=='.'){
+                    continue;
+                }
+                if(map[board[j][i]]>0){
+                    flag=1;
+                    exit;
+                }
+                else
+                map[board[j][i]]=1;
+                }
+            }
+        if(flag==1)
+            return false;
+        else
+            return true;
+        
+    }
+};
