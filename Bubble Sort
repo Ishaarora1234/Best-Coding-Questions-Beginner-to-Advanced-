@@ -8,7 +8,7 @@ void swap(int*a,int*b){
     *b=temp;
     return;
 }
-void bubblesort(int *arr,int n){
+void bubblesort(int *arr,int n){jey
     int count=0;
 while(count<n){
     int i=0,j=1;
