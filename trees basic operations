@@ -1,0 +1,90 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include<iostream>
+#include<queue>
+// #include 'bst.cpp';
+// #include 'bstnode.cpp';
+using namespace std;
+template<typename T>
+class bstnode{
+    public:
+    T data;
+    bstnode<T> *left;
+    bstnode<T> *right;
+    bstnode(T data){
+        this->data=data;
+        left=NULL;
+        right=NULL;
+    }
+};
+bstnode<int>* takeinput(){
+    int data;
+    cout<<"enter data: ";
+    cin>>data;
+    if(data==-1){
+        return NULL;
+    }
+    bstnode<int>* node=new bstnode<int>(data);
+    bstnode<int>* leftchild=takeinput();
+    bstnode<int>* rightchild=takeinput();
+    node->left=leftchild;
+    node->right=rightchild;
+    return node;
+}
+bstnode<int>* takeinputlevelwise(){
+    cout<<"enter data: ";
+    int data;
+    cin>>data;
+    queue<bstnode<int>*> q;
+    if(data==-1){
+            return NULL;
+        }
+    bstnode<int>* node=new bstnode<int>(data);
+    q.push(node);
+    while(!q.empty()){
+        bstnode<int>* ele=q.front();
+        q.pop();
+        int lc,rc;
+        cout<<"enter leftChild of "<<ele->data<<endl;
+        cin>>lc;
+        if(lc!=-1){
+        bstnode<int>* leftchild=new bstnode<int>(lc);
+        ele->left=leftchild;
+        q.push(leftchild);
+        }
+        cout<<"enter rightChild of "<<ele->data<<endl;
+        cin>>rc;
+        if(rc!=-1){
+        bstnode<int>* rightchild=new bstnode<int>(rc);
+        ele->right=rightchild;
+        q.push(rightchild);
+        }
+    }
+    return node;
+}
+void printtree(bstnode<int>* root){
+if(root==NULL){
+    return;
+}
+cout<<endl;
+cout<<root->data<<" : ";
+if(root->left!=NULL)
+cout<<root->left->data<<" , ";
+if(root->right!=NULL)
+cout<<root->right->data;
+printtree(root->left);
+printtree(root->right);
+return;
+}
+int main(){
+bstnode<int>* root=takeinputlevelwise();
+printtree(root);
+return 0;
+}
+//1 5 9 3 6 8 10 -1 -1 -1 -1 -1 -1 -1 -1
