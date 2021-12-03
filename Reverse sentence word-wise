@@ -1,1 +1,49 @@
-//
+int findlength(char input[]){
+    int count=0;
+    for(int i=0;input[i]!='\0';i++){
+        count++;
+    }
+    return count;
+}
+int findnoofwords(char input[]){
+    int count=0;
+    for(int i=0;input[i]!='\0';i++){
+        if(input[i]==' ')
+        count++;
+    }
+    return count+2;
+}
+void reverseStringWordWise(char input[]) {
+    int l=findlength(input);
+    int noofwords=findnoofwords(input);
+    int c=l;
+    int start=0;
+    int end=l-1;
+    char temp[l];
+    
+    while(noofwords!=0){
+        int count=0;
+        for(int i=end;i>=0;i--){
+            count++;
+            if(input[i]==' ' || i==0){
+                if(i==0){
+                   for(int j=i;j<i+count-1;j++){
+                    temp[start++]=input[j];
+                       break;
+                } 
+                }
+                for(int j=i+1;j<i+count;j++){
+                    temp[start++]=input[j];
+                }
+             temp[start++]=' ';
+             end=end-count;
+            break;   
+            }
+        }
+        noofwords--;
+    }
+    for(int i=0;i<l;i++){
+        input[i]=temp[i];
+    }
+    return;
+}
