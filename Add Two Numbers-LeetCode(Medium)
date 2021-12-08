@@ -30,6 +30,6 @@ public:
             sum/=10;
             node=&((*node)->next);
         }        
-        return l3;
+        return l3; //isha arora
     }
 };
