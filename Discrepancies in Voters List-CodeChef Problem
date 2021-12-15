@@ -1,0 +1,33 @@
+#include <iostream>
+#include<map>
+//#include<bits/stdc++.h>
+#include<iterator>
+using namespace std;
+
+typedef long long ll;
+int main() {
+    ll n1,n2,n3;
+    cin>>n1>>n2>>n3;
+    ll all=n1+n2+n3;
+    ll arr[all];
+    map<ll,ll> m;
+    for(ll i=0;i<all;i++){
+        cin>>arr[i];
+        m[arr[i]]++;
+    }
+    map<ll,ll>::iterator it;
+    ll count=0;
+    for(it=m.begin();it!=m.end();it++){
+        if(it->second>=2){
+            count++;
+        }
+    }
+    cout<<count<<endl;
+    for(it=m.begin();it!=m.end();it++){
+        if(it->second>=2){
+            cout<<it->first<<endl;
+        }
+    }
+	// your code goes here
+	return 0;
+}
