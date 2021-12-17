@@ -1,0 +1,23 @@
+#include<iostream>
+#include<map>
+#include<cstring>
+string uniqueChar(string str) {
+	// Write your code here
+    string output;
+    map<char,int> m;
+    //m[str[0]]++;
+    for(int i=0;str[i]!='\0';i++){
+        m[str[i]]++;
+        if(m[str[i]]<2){
+            output+=str[i];
+            //m[str[i]]--;
+        } 
+    }
+    //cout<<output;
+    return output;
+    // for(int i=0;str[i]!='\0';i++){
+    //     if(m[str[i]]<2){
+    //         output+=str[i];
+    //     }
+    // }
+}
