@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+#include<map>
+#include<algorithm>
+#include<iterator>
+#include<iostream>
+#include<vector>
+using namespace std;
+typedef long long ll;
+
+bool compare(pair<int,pair<int,string>> &a,pair<int,pair<int,string>> &b){
+    if(a.second.first==b.second.first){
+        return a.first<b.first;
+    }
+    return a.second.first>b.second.first;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    multimap <int,pair<int,string>> m;
+    for(int i=0;i<n;i++){
+        string name;
+        int m1,m2,m3;
+        cin>>name>>m1>>m2>>m3;
+        int marks=m1+m2+m3;
+        m.insert(pair<int,pair<int,string>> (i+1,std::make_pair(marks,name)));
+    }
+    multimap<int,pair<int,string>> :: iterator it;
+    int i=1;
+    vector<pair<int,pair<int,string>>> v;
+    for(auto &it:m){
+        v.push_back(it);
+    }
+    sort(v.begin(),v.end(),compare);
+    vector<pair<int,pair<int,string>>> :: iterator iter;
+    for(auto &iter:v){
+        cout<<i++<<" "<<iter.second.second<<endl;
+    }
+	return 0;
+}
