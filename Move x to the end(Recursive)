@@ -1,0 +1,25 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+string movex(string s){
+    string ans="";
+    if(s[0]=='\0'){
+        return ans;
+    }
+    ans+=movex(s.substr(1));
+    if(s[0]=='x')
+    {
+        ans+='x';
+        return ans;
+         }
+    return s.substr(0,1)+ans;
+}
+
+int main()
+{
+    string s;
+    cin>>s;
+    string ans=movex(s);
+    cout<<ans;
+    return 0;
+}
