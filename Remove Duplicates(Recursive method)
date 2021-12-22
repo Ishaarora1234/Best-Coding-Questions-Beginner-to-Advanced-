@@ -1,0 +1,23 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+void removeDup(string s,string ans){
+    if(s[0]=='\0'){
+        cout<<ans;
+        return;
+    }
+    if(s[0]!=s[1])
+    {
+        ans+=s[0];
+        }
+    removeDup(s.substr(1),ans);
+}
+
+int main()
+{
+    string s;
+    cin>>s;
+    string ans="";
+    removeDup(s,ans);
+    return 0;
+}
