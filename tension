@@ -1,4 +1,19 @@
-...
-Here
-...
-:(
+#include <iostream>
+using namespace std;
+void toh(int n,char source,char helper,char dest){
+    if(n==0){
+        return;
+    }
+    toh(n-1,source,dest,helper);
+    cout<<"Move from "<<source<<" to "<<dest<<endl;
+    toh(n-1,helper,source,dest);
+    return;
+}
+int main()
+{
+    int n;
+    cout<<"Solve TOH for how many disks? "<<endl;
+    cin>>n;
+    toh(n,'A','B','C');
+    return 0;
+}
