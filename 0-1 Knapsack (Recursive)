@@ -1,0 +1,26 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int knapsack(int val[],int cost[],int capacity,int ans,int n){
+    if(capacity==0){
+        return ans;
+    }
+    if(n==0)
+    {
+        return ans;
+    }
+    if(cost[0]>capacity){
+        return ans;
+    }
+    return max(knapsack(val+1,cost+1,capacity-cost[0],ans+val[0],n-1),knapsack(val+1,cost+1,capacity,ans,n-1));
+}
+
+int main()
+{
+    int val[]={2,4,1,2,5};
+    int cost[]={2,3,1,1,4};
+    int capacity=5;
+    int maxval=knapsack(val,cost,capacity,0,6);
+    cout<<maxval;
+    return 0;
+}
