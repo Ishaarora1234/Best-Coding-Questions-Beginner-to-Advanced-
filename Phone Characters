@@ -9,9 +9,8 @@ void phonechars(string keypad[],string s,string ans){
     char c=s[0];
     string code=keypad[c-'0'];
     string ros=s.substr(1);
-    for(int i=0;i<s.length();i++){
-        phonechars(keypad,ros,ans+code[i]);
-        cout<<ans;
+    for(int i=0;i<code.length();i++){
+        phonechars(keypad,ros,code[i]+ans);
     }
     return;
 }
