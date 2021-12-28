@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+void permute(vector<int> v,int idx){
+    int n=v.size();
+    if(idx==n)
+    {
+        for(auto i:v)
+        cout<<i<<" ";
+        cout<<endl;
+        return;
+    }
+    for(int i=idx;i<n;i++){
+        if(i!=idx && v[i]==v[idx])
+        continue;
+        swap(v[i],v[idx]);
+        permute(v,idx+1);
+        //swap(v[i],v[idx]);
+    }
+    return;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int> v(n);
+    for(auto &i:v)
+    cin>>i;
+    sort(v.begin(),v.end());
+    permute(v,0);
+    return 0;
+}
