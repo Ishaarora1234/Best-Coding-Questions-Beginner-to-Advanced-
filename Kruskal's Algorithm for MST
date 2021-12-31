@@ -71,4 +71,3 @@ int main(){
 	kruskalsmst(edges,vertices,n,e);
 	return 0;
 }
-//you did it!
