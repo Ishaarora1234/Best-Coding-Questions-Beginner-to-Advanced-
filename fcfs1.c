@@ -12,6 +12,8 @@ int burst_time[], int wait_time[], int tat[]) {
   tat[i] = burst_time[i] + wait_time[i];
   return 0;
 }
+//The Aditya Arora
+
 int avgtime( int proc[], int n, int burst_time[]) {
   int wait_time[n], tat[n], total_wt = 0, total_tat = 0;
   int i;
