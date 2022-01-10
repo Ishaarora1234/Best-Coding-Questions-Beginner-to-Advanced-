@@ -1,0 +1,5 @@
+int countnodes(Node*root){
+    if(root==NULL)
+    return 0;
+    return countnodes(root->left)+countnodes(root->right)+1;
+}
