@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+struct node{
+    int data;
+    node*left=NULL;
+    node*right=NULL;
+    node(int data){
+        this->data=data;
+    }
+};
+int sumreplacement(node*root){
+    if(root==NULL)
+    return 0;
+    root->data=root->data+sumreplacement(root->left)+sumreplacement(root->right);
+    return root->data;
+}
+void printtree(node*root){
+    if(root==NULL)
+    return;
+    cout<<root->data<<" ";
+    printtree(root->left);
+    printtree(root->right);
+    return;
+}
+int main()
+{
+    node*root=new node(1);
+    root->left=new node(2);
+    root->right=new node(3);
+    root->left->left=new node(4);
+    root->left->right=new node(5);
+    printtree(root);
+    cout<<"all nodes sum: "<<sumreplacement(root)<<endl;
+    printtree(root);
+    return 0;
+}
