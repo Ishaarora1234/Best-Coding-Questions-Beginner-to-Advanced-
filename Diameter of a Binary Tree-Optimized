@@ -1,0 +1,12 @@
+int diameter(Node*root,int *height){
+    if(root==NULL){
+        *height=0;
+        return 0;
+    }
+    int lh=0,rh=0;
+    int ld=diameter(root->left,&lh);
+    int rd=diameter(root->right,&rh);
+    *height=max(lh,rh)+1;
+    int currdia=(lh+rh)+1;
+    return max(max(ld,rd),currdia);
+}
