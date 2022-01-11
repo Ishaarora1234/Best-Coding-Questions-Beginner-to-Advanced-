@@ -1,0 +1,15 @@
+bool isbalancedoptimized(node*root,int*height){
+    if(root==NULL)
+    return true;
+    int lh=0,rh=0;
+    if(isbalancedoptimized(root->left,&lh)==false){
+        return false;
+    }
+    if(isbalancedoptimized(root->right,&rh)==false){
+        return false;
+    }
+    *height=max(lh,rh)+1;
+    if(abs(lh-rh)<=1)
+    return true;
+    return false;
+}
