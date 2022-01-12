@@ -1,0 +1,68 @@
+#include <iostream>
+#include<queue>
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+    int data;
+    node*left=NULL;
+    node*right=NULL;
+    node(int data){
+        this->data=data;
+    }
+};
+node*lca(node*root,int n1,int n2){
+    if(root==NULL)
+    return NULL;
+    
+    if(root->data==n1 || root->data==n2)
+    return root;
+    
+    node*left=lca(root->left,n1,n2);
+    node*right=lca(root->right,n1,n2);
+    
+    if(left!=NULL && right!=NULL){
+        return root;
+    }
+    
+    if(left!=NULL){
+        return lca(root->left,n1,n2);
+    }
+    if(right!=NULL){
+        return lca(root->right,n1,n2);
+    }
+    else
+    return NULL;
+    
+}
+int dis(node*l,int n,int d){
+    if(l==NULL)
+    return -1;
+    if(l->data==n)
+    return d;
+    int ans=dis(l->left,n,d+1);
+    if(ans==-1)
+    ans=dis(l->right,n,d+1);
+    return ans;
+}
+int shortestdis(node*root,int n1,int n2){
+    node*l=lca(root,n1,n2);
+    cout<<"lca is: "<<l->data<<endl;
+    int dis1=dis(l,n1,0);
+    int dis2=dis(l,n2,0);
+    //cout<<dis1<<" "<<dis2;
+    return dis1+dis2;
+}
+
+int main()
+{
+    node*root=new node(1);
+    root->left=new node(2);
+    root->right=new node(3);
+    root->left->left=new node(4);
+    root->left->right=new node(5);
+    root->left->right=new node(10);
+    root->left->right->right=new node(6);
+    root->left->right->right->right=new node(7);
+    cout<<shortestdis(root,7,3);
+    return 0;
+}
