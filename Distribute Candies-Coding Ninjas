@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+using namespace std;
+bool compare(long long a,long long b){
+    return a>b;
+}
+bool ispossible(long long v[],long long c,long long k,long long n){
+    long long t=k;
+    for(long long i=0;i<n;i++){
+        long long d=v[i]/c;
+        t-=d;
+        if(t<=0)
+            return true;
+    }
+    return false;
+}
+int main(){
+    // write your code
+     long long t;
+    cin>>t;
+    while(t--){
+        long long n,k;
+        cin>>n>>k;
+        long long arr[n];
+        long long maxc=0;
+        for(long long i=0;i<n;i++){
+            cin>>arr[i];
+            if(arr[i]>maxc)
+                maxc=arr[i];
+        }
+        sort(arr,arr+n,compare);
+    long long i=1,j=maxc;
+        long long ans=0;
+        while(i<=j){
+            long long mid=(i+j)/2;
+        if(ispossible(arr,mid,k,n)){
+            ans=mid;
+            i=mid+1;
+        }
+        else
+            j=mid-1;
+        }
+        cout<<ans<<endl;
+    }
+    return 0;
+}
