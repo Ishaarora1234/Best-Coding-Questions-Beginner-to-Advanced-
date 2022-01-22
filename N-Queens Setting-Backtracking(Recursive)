@@ -1,4 +1,4 @@
-c#include <iostream>
+#include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
 bool isSafe(int** arr,int n,int x,int y){
