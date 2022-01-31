@@ -59,52 +59,102 @@ CALIFORNIA
 
 
 #include<bits/stdc++.h>
+#include<string>
+#include<vector>
 using namespace std;
-#def n 10
-bool ispossible vertical(vector<string> board,vector<string> wordlist,int index,int row,int col){
+#define n 10
+bool ispossiblevertical(vector<string>& board,vector<string>& wordlist,int index,int row,int col){
     int l=wordlist[index].length();
-    int i=0;
-    while(i<l){
-        if(board[row][i]=='+' || board[row][i]!=wordlist[index[i]])
-            return false;
-    }
-    return true
-}
-bool ispossible horizontal(vector<string> board,vector<string> wordlist,int index,int row,int col){
-    int l=wordlist[index].length();
-    int i=0;
-    while(i<l){
-        if(board[i][col]=='+' || board[i][col]!=wordlist[index[i]])
-            return false;
-    }
-    return true
-}
-void setvertical(vector<string> board,vector<string> wordlist,int index,int row,int col,bool checkarray[]){
-    int l=wordlist[index].length();
-    int i=0;
-    while(i<l){
-        if(board[row][i]=='-'){
-            
+    string s=wordlist[index];
+    int i=col;
+    while(i<l+col){
+        if(board[row][i]=='-' || board[row][i]==s[i-col]){
+            i++;
         }
-        else if(board[i][col]==wordlist[index[i]])
+        else
             return false;
     }
+    return true;
 }
-void sethorizontal(vector<string> board,vector<string> wordlist,int index,int row,int col,bool checkarray[]){
-    
+bool ispossiblehorizontal(vector<string>& board,vector<string>& wordlist,int index,int row,int col){
+    int l=wordlist[index].length();
+    string s=wordlist[index];
+    int i=row;
+    while(i<l+row){
+        if(board[i][col]=='-' || board[i][col]==s[i-row]){
+            i++;
+        }
+        else
+            return false;
+    }
+    return true;
 }
-void resetvertical(vector<string> board,vector<string> wordlist,int index,int row,int col,bool checkarray[]){
-    
+void setvertical(vector<string>& board,vector<string>& wordlist,int index,int row,int col,int checkarray[]){
+    int l=wordlist[index].length();
+    string s=wordlist[index];
+    int i=col;
+    while(i<l+col){
+        if(board[row][i]=='-'){
+            board[row][i]=s[i-col];
+            checkarray[i-col]=1;
+        }
+        else if(board[row][i]==s[i-col])
+        {
+         checkarray[i-col]=0;   
+        }
+        i++;
+    }
 }
-void resethorizontal(vector<string> board,vector<string> wordlist,int index,int row,int col,bool checkarray[]){
-    
+void sethorizontal(vector<string>& board,vector<string>& wordlist,int index,int row,int col,int checkarray[]){
+    int l=wordlist[index].length();
+    int i=row;
+    string s=wordlist[index];
+    while(i<l+row){
+        if(board[i][col]=='-'){
+            board[i][col]=s[i-row];
+            checkarray[i-row]=1;
+        }
+        else if(board[i][col]==s[i-row])
+        {
+         checkarray[i-row]=0;   
+        }
+        i++;
+    }
 }
-bool solvecrossword(vector<string> board;vector<string> wordlist,int index){
+void resetvertical(vector<string>& board,vector<string>& wordlist,int index,int row,int col,int checkarray[]){
+    int l=wordlist[index].length();
+    int i=col;
+    while(i<l+col){
+        if(checkarray[i-col]==1){
+            board[row][i]='-';
+        }
+        i++;
+    } 
+}
+void resethorizontal(vector<string>& board,vector<string>& wordlist,int index,int row,int col,int checkarray[]){
+    int l=wordlist[index].length();
+    string s=wordlist[index];
+    int i=row;
+    while(i<l+row){
+        if(checkarray[i-row]==1){
+            board[i][col]='-';
+        }
+        i++;
+    }
+}
+bool solvecrossword(vector<string> board,vector<string> wordlist,int index){
+    if(index>=wordlist.size())
+    {
+        for(int i=0;i<n;i++){
+            cout<<board[i]<<endl;
+    }
+        return true;
+    }
     for(int i=0;i<n;i++){
         for(int j=0;j<n;j++){
             if(board[i][j]=='-' || board[i][j]==wordlist[index][0]){
                 if(ispossiblevertical(board,wordlist,index,i,j)){
-                    bool checkarray[wordlist[index].size()];
+                    int checkarray[wordlist[index].size()];
                     setvertical(board,wordlist,index,i,j,checkarray);
                     bool check=solvecrossword(board,wordlist,index+1);
                     if(check)
@@ -113,7 +163,7 @@ bool solvecrossword(vector<string> board;vector<string> wordlist,int index){
                         resetvertical(board,wordlist,index,i,j,checkarray);
                 }
                 else if(ispossiblehorizontal(board,wordlist,index,i,j)){
-                    bool checkarray[wordlist[index].size()];
+                    int checkarray[wordlist[index].size()];
                     sethorizontal(board,wordlist,index,i,j,checkarray);
                     bool check=solvecrossword(board,wordlist,index+1);
                     if(check)
@@ -124,8 +174,6 @@ bool solvecrossword(vector<string> board;vector<string> wordlist,int index){
             }
         }
     }
-    if(index==wordlist.size()-1)
-        return true;
     return false;
 }
 int main(){
@@ -146,17 +194,22 @@ int main(){
     cin>>words;
     int i=0;
     string temp="";
-    while(s[i++]!='\0'){
-        if(s[i]==';'){
+    while(words[i]!='\0'){
+        if(words[i]==';'){
+            wordlist.push_back(temp);
+            temp="";
+        }
+        else if(i==words.length()-1){
+            temp+=words[i];
             wordlist.push_back(temp);
             temp="";
         }
         else
-            temp+=s[i];
+            temp+=words[i];
+        
+        i++;
     }
+    //wordlist.push_back(temp);
     bool ans=solvecrossword(board,wordlist,0);
-    for(int i=0;i<n;i++){
-            cout<<board[i]<<endl;
-    }
     return 0;
 }
