@@ -1,0 +1,162 @@
+Coding Ninjas has provided you a crossword of 10*10 grid. The grid contains '+' or '-' as its cell values. Now, you are also provided with a word list that needs to placed accurately in the grid. Cells marked with '-' are to be filled with word list.
+For example, The following is an example for the input crossword grid and the word list.
++-++++++++
++-++-+++++
++-------++
++-++-+++++
++-++-+++++
++-++-+++++
+++++-+++++
+++++-+++++
+++++++++++
+----------
+CALIFORNIA;NIGERIA;CANADA;TELAVIV
+Output for the given input should be:
++C++++++++
++A++T+++++
++NIGERIA++
++A++L+++++
++D++A+++++
++A++V+++++
+++++I+++++
+++++V+++++
+++++++++++
+CALIFORNIA
+Note: We have provided such test cases that there is only one solution for the given input.
+Input format:
+The first 10 lines of input contain crossword. Each of 10 lines has a character array of size 10. Input characters are either '+' or '-'.
+The next line of input contains the word list, in which each word is separated by ';'. 
+Output format:
+Print the crossword grid, after placing the words of word list in '-' cells.  
+Constraints
+The number of words in the word list lie in the range of: [1,6]
+The length of words in the word list lie in the range: [1, 10]
+Time Limit: 1 second
+Sample Input 1:
++-++++++++
++-++-+++++
++-------++
++-++-+++++
++-++-+++++
++-++-+++++
+++++-+++++
+++++-+++++
+++++++++++
+----------
+CALIFORNIA;NIGERIA;CANADA;TELAVIV
+Sample Output 1:
++C++++++++
++A++T+++++
++NIGERIA++
++A++L+++++
++D++A+++++
++A++V+++++
+++++I+++++
+++++V+++++
+++++++++++
+CALIFORNIA
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#def n 10
+bool ispossible vertical(vector<string> board,vector<string> wordlist,int index,int row,int col){
+    int l=wordlist[index].length();
+    int i=0;
+    while(i<l){
+        if(board[row][i]=='+' || board[row][i]!=wordlist[index[i]])
+            return false;
+    }
+    return true
+}
+bool ispossible horizontal(vector<string> board,vector<string> wordlist,int index,int row,int col){
+    int l=wordlist[index].length();
+    int i=0;
+    while(i<l){
+        if(board[i][col]=='+' || board[i][col]!=wordlist[index[i]])
+            return false;
+    }
+    return true
+}
+void setvertical(vector<string> board,vector<string> wordlist,int index,int row,int col,bool checkarray[]){
+    int l=wordlist[index].length();
+    int i=0;
+    while(i<l){
+        if(board[row][i]=='-'){
+            
+        }
+        else if(board[i][col]==wordlist[index[i]])
+            return false;
+    }
+}
+void sethorizontal(vector<string> board,vector<string> wordlist,int index,int row,int col,bool checkarray[]){
+    
+}
+void resetvertical(vector<string> board,vector<string> wordlist,int index,int row,int col,bool checkarray[]){
+    
+}
+void resethorizontal(vector<string> board,vector<string> wordlist,int index,int row,int col,bool checkarray[]){
+    
+}
+bool solvecrossword(vector<string> board;vector<string> wordlist,int index){
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(board[i][j]=='-' || board[i][j]==wordlist[index][0]){
+                if(ispossiblevertical(board,wordlist,index,i,j)){
+                    bool checkarray[wordlist[index].size()];
+                    setvertical(board,wordlist,index,i,j,checkarray);
+                    bool check=solvecrossword(board,wordlist,index+1);
+                    if(check)
+                        return true;
+                    else
+                        resetvertical(board,wordlist,index,i,j,checkarray);
+                }
+                else if(ispossiblehorizontal(board,wordlist,index,i,j)){
+                    bool checkarray[wordlist[index].size()];
+                    sethorizontal(board,wordlist,index,i,j,checkarray);
+                    bool check=solvecrossword(board,wordlist,index+1);
+                    if(check)
+                        return true;
+                    else
+                        resethorizontal(board,wordlist,index,i,j,checkarray);
+                }
+            }
+        }
+    }
+    if(index==wordlist.size()-1)
+        return true;
+    return false;
+}
+int main(){
+    
+    // write your code here
+    vector<string> board;
+    vector<string> wordlist;
+    for(int i=0;i<n;i++){
+        string s="";
+        for(int j=0;j<n;j++){
+            char c;
+            cin>>c;
+            s+=c;
+        }
+        board.push_back(s);
+    }
+    string words="";
+    cin>>words;
+    int i=0;
+    string temp="";
+    while(s[i++]!='\0'){
+        if(s[i]==';'){
+            wordlist.push_back(temp);
+            temp="";
+        }
+        else
+            temp+=s[i];
+    }
+    bool ans=solvecrossword(board,wordlist,0);
+    for(int i=0;i<n;i++){
+            cout<<board[i]<<endl;
+    }
+    return 0;
+}
