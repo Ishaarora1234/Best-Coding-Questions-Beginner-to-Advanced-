@@ -17,7 +17,30 @@ Sample output 1:
 6
 24
 
-```javascript
+```#include<bits/stdc++.h>
+using namespace std;
+int nproduct(int n){
+    if(n==1){
+        return 1;
+    }
+    int m=pow(10,9)+7;
+    long x=(long)nproduct(n-1);
+    int ans1=(int)(x%m);
+    int ans2=(n%m);
+    long a=(long)ans1*ans2;
+    int ans=(int)(a%m);
+    return ans;
+}
+int main(){
+    
+    // write your code here
+    int t;cin>>t;
+    while(t--){
+        int n;cin>>n;
+        cout<<nproduct(n)<<endl;
+    }
+    return 0;```
+    
 #include<bits/stdc++.h>
 using namespace std;
 int nproduct(int n){
@@ -42,4 +65,3 @@ int main(){
     }
     return 0;
 }
-```
