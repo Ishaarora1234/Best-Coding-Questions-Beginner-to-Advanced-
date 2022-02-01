@@ -17,7 +17,7 @@ Sample output 1:
 6
 24
 
-```
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 int nproduct(int n){
