@@ -9,7 +9,6 @@ int knapsack(int val[],int cost[],int capacity,int n){
 }
 int main()
 {
-
     int val[]={2,4,5};
     int cost[]={2,3,1};
     int capacity=5;
