@@ -7,6 +7,7 @@ int knapsack(int val[],int cost[],int capacity,int n){
     }
     return max(knapsack(val+1,cost+1,capacity-cost[0],n-1)+val[0],knapsack(val+1,cost+1,capacity,n-1));
 }
+
 int main()
 {
     int val[]={2,4,5};
