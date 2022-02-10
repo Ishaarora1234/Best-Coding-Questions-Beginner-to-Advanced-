@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    
+    // write your code here
+    long long n,k,l;
+    cin>>n>>k>>l;
+    long long arr[n];
+    long long sum=0;
+    for(long long i=0;i<n;i++){
+        cin>>arr[i];
+        sum+=arr[i];
+    }
+    long long average=sum/n;
+    if(average!=0 || sum%n!=0){
+        average+=1;
+    }
+    long long i=0,j=n-1;
+    long long coins=0;
+    if(n==0 || n==1){
+        cout<<"0"<<endl;
+        return 0;
+    }
+    long long less=0;
+    long long more=0;
+    for(long long i=0;i<n;i++){
+        if(arr[i]<average){
+            less+=(average-arr[i]);
+        }
+        else if(arr[i]>average){
+            more+=(arr[i]-average);
+        }
+    }
+    less-=more;
+    coins+=(more*k);
+    coins+=(less*l);
+    cout<<coins<<endl;
+
+    return 0;
+}
