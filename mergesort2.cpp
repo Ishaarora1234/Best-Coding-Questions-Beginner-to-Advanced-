@@ -10,6 +10,7 @@ void merge(int a[],int l,int h,int m){
 			arr[k++]=a[i++];
 		else
 		arr[k++]=a[j++];
+		
 	}
 	while(i<=m)
 		arr[k++]=a[i++];
