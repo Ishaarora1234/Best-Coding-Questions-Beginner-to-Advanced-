@@ -2,7 +2,6 @@
 using namespace std;
 int knapsack(int n,int v[],int w[],int W,int **dp){
     if(n<=0 || W<=0)
-    
         return 0;
     if(dp[n][W]!=-1)
         return dp[n][W];
